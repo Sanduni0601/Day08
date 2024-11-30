@@ -11,6 +11,14 @@ const getTextInput = (e) =>{
     }))
 }
 
+const authenticate = () =>{
+    if(user.username === "admin" && user.password === "abc@123"){
+        setUser({username:"",password:"",error:""})
+        navigate('/dash');
+    } else {
+        setUser({'error':"Invalid credentials"})
+    }
+}
 return(
 <>
 <h1>Login here</h1>
@@ -23,8 +31,11 @@ return(
         <td>Password: </td>
         <td><input type = "password" name = "password" onChange={getTextInput}/></td>
     </tr>
+    <tr>
+    <td style={{ color: 'red' }} colSpan={2}>{user.error}</td>
+    </tr>
 </table>
-<button>Login</button>
+<button onClick={authenticate}>Login</button>
 </>
 );
 }
